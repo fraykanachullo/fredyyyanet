@@ -152,7 +152,16 @@ html:fullscreen body {
 #screen-landing {
   opacity: 0;
   transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 
 #screen-landing.landing-visible {

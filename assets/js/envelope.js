@@ -119,7 +119,7 @@
       // Retirar el sobre de la vista una vez terminada la animación
       setTimeout(() => {
         screenEnvelope.style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        screenLanding.scrollTop = 0;
       }, 850);
     }
 
