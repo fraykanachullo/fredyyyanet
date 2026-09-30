@@ -58,7 +58,7 @@ function doPost(e) {
       throw new Error('Faltan datos obligatorios: nombre y asistencia; el teléfono es obligatorio si asistirá.');
     }
 
-    sheet.appendRow([
+    var rowData = [
       fecha,
       nombre,
       telefono,
@@ -66,12 +66,37 @@ function doPost(e) {
       acompanantes,
       restricciones,
       mensaje
-    ]);
+    ];
+
+    // Actualiza la confirmación existente para no duplicar invitados.
+    var lastRow = sheet.getLastRow();
+    var existingRows = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, headers.length).getValues() : [];
+    var normalizedName = nombre.toLowerCase();
+    var duplicateRow = 0;
+
+    for (var i = 0; i < existingRows.length; i++) {
+      var existingName = String(existingRows[i][1] || '').trim().toLowerCase();
+      var existingPhone = String(existingRows[i][2] || '').replace(/\D/g, '');
+      var submittedPhone = telefono.replace(/\D/g, '');
+
+      if ((submittedPhone && existingPhone && submittedPhone === existingPhone) ||
+          (!submittedPhone && existingName && existingName === normalizedName)) {
+        duplicateRow = i + 2;
+        break;
+      }
+    }
+
+    if (duplicateRow) {
+      sheet.getRange(duplicateRow, 1, 1, rowData.length).setValues([rowData]);
+    } else {
+      sheet.appendRow(rowData);
+      duplicateRow = sheet.getLastRow();
+    }
 
     return ContentService.createTextOutput(JSON.stringify({
       result: 'success',
       message: 'Confirmación registrada correctamente.',
-      row: sheet.getLastRow()
+      row: duplicateRow
     })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
