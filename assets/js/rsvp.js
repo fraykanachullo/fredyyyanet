@@ -120,17 +120,10 @@
         mensaje: mensaje || 'Sin mensaje'
       });
 
-      const personasTotal = parseInt(acompanantes, 10) + 1;
-      let waText = 'Hola Fredy y Yanet, soy *' + nombre + '*. ';
-      if (asistencia === 'si') {
-        waText += 'Confirmo con mucha alegría mi asistencia a su boda (' + personasTotal + ' persona' + (personasTotal > 1 ? 's' : '') + ').';
-        if (nombresAcompanantes) {
-          waText += ' Acompañante(s): ' + nombresAcompanantes + '.';
-        }
-      } else {
-        waText += 'Lamentablemente no podré asistir a su boda. Les deseo lo mejor en esta nueva etapa.';
-      }
-      if (dieta) waText += ' Restricciones alimentarias: ' + dieta + '.';
+      let waText = 'Hola Fredy, soy *' + nombre + '*. ';
+      waText += asistencia === 'si'
+        ? 'Confirmo mi asistencia a su boda.'
+        : 'No podré asistir a su boda.';
       if (mensaje) waText += ' Mensaje: "' + mensaje + '"';
 
       const whatsappText = encodeURIComponent(waText);
