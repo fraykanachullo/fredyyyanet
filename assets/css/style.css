@@ -40,17 +40,6 @@ body {
   overflow-x: hidden;
 }
 
-.letter-photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 9999px;
-}
-
 /* Ocultar barra de scroll estándar */
 ::-webkit-scrollbar {
   display: none;
@@ -91,6 +80,70 @@ html, body {
   visibility: hidden;
   pointer-events: none;
   transform: scale(1.04);
+}
+
+#invitation-card.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0.75rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0;
+  transform: none !important;
+  z-index: 250;
+}
+
+html:fullscreen,
+html:fullscreen body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#invitation-card.is-fullscreen > .absolute {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  min-height: calc(100dvh - 1.5rem);
+  margin: 0;
+}
+
+#invitation-card.is-fullscreen > .absolute > div {
+  min-height: calc(100dvh - 1.75rem);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  gap: 1.25rem;
+}
+
+.letter-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: clamp(5.5rem, 22vw, 8rem);
+  height: clamp(5.5rem, 22vw, 8rem);
+  margin: 0.75rem 0;
+  border: 1px solid rgba(201, 168, 93, 0.75);
+  border-radius: 9999px;
+  outline: 1px solid rgba(201, 168, 93, 0.25);
+  outline-offset: 0.35rem;
+  color: var(--gold-bright);
+  background: radial-gradient(circle, rgba(201, 168, 93, 0.2), rgba(17, 20, 13, 0.65) 68%);
+  box-shadow: 0 0 2rem rgba(201, 168, 93, 0.18), inset 0 0 1.5rem rgba(201, 168, 93, 0.12);
+  font-family: var(--script);
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  line-height: 1;
+}
+
+.letter-monogram i {
+  font-family: var(--serif);
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 /* ==========================================

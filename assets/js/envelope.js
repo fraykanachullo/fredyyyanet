@@ -88,9 +88,10 @@
       // Elevar la tarjeta interior desde el bolsillo del sobre
       setTimeout(() => {
         if (invitationCard) {
+          invitationCard.classList.add('is-fullscreen');
           invitationCard.style.opacity = '1';
           invitationCard.style.pointerEvents = 'auto';
-          invitationCard.style.transform = 'translateY(-16px) scale(1.02)';
+          invitationCard.style.transform = 'none';
         }
       }, 400);
 
@@ -129,14 +130,6 @@
       sealAssembly.addEventListener('click', openEnvelope);
     }
 
-    // Si el usuario toca la tarjeta abierta o el sobre para entrar de inmediato
-    if (invitationCard) {
-      invitationCard.addEventListener('click', function () {
-        if (isOpen) {
-          transitionToLanding();
-        }
-      });
-    }
   }
 
   if (document.readyState === 'loading') {
