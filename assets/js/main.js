@@ -58,13 +58,8 @@
     if (!modal) return false;
 
     const guestName = document.getElementById('modal-guest-name');
-    const waBtn = document.getElementById('modal-wa-btn');
-
     if (guestName) {
       guestName.textContent = (options && options.name) || 'Invitado';
-    }
-    if (waBtn && options && options.waUrl) {
-      waBtn.href = options.waUrl;
     }
 
     modal.classList.add('active');
