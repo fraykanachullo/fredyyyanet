@@ -20,6 +20,17 @@
     let isOpen = false;
     let transitionTimer = null;
 
+    function requestFullscreen() {
+      const root = document.documentElement;
+      const request = root.requestFullscreen || root.webkitRequestFullscreen || root.msRequestFullscreen;
+
+      if (request) {
+        Promise.resolve(request.call(root)).catch(() => {
+          // Algunos navegadores móviles no permiten pantalla completa.
+        });
+      }
+    }
+
     // Campanilla ceremonial al quebrar el sello
     function playChime() {
       try {
@@ -50,6 +61,8 @@
     function openEnvelope() {
       if (isOpen) return;
       isOpen = true;
+
+      requestFullscreen();
 
       // Reproducir sonido ceremonial
       playChime();
