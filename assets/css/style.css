@@ -1,0 +1,527 @@
+/* ============================================================
+   ESTILOS EDITORIALES NUPCIALES - BODA FREDY & YANET
+   Diseño de Dos Pantallas: 1) Sobre Nupcial 2) Landing Page
+   ============================================================ */
+
+:root {
+  --olive: #1e2119;
+  --olive-low: #1a1d15;
+  --olive-dark: #11140d;
+  --gold: #c9a85d;
+  --gold-bright: #e6c375;
+  --gold-glow: rgba(201, 168, 93, 0.35);
+  --gold-outline: rgba(201, 168, 93, 0.45);
+  --cream: #e2e4d7;
+  --mute: #b8baa9;
+  --script: "Great Vibes", cursive;
+  --serif: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--olive-dark);
+  color: var(--cream);
+  font-family: var(--serif);
+  overscroll-behavior: none;
+  overflow-x: hidden;
+}
+
+/* Ocultar barra de scroll estándar */
+::-webkit-scrollbar {
+  display: none;
+}
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================
+   PANTALLA 1: CARTA / SOBRE DE BIENVENIDA
+   ========================================== */
+#screen-envelope {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: var(--olive-dark);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
+}
+
+#screen-envelope.envelope-closed {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#screen-envelope.envelope-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.04);
+}
+
+/* ==========================================
+   PANTALLA 2: LANDING PAGE COMPLETA
+   ========================================== */
+#screen-landing {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+}
+
+#screen-landing.landing-visible {
+  opacity: 1;
+}
+
+/* ==========================================
+   MARCO DE FONDO CUADRADO / PLACAS CONCÉNTRICAS
+   ========================================== */
+.plaque-frame {
+  position: relative;
+  background-color: #1e2119;
+  border-radius: 14px;
+  border: 2px solid rgb(201, 168, 93);
+  outline: rgba(201, 168, 93, 0.45) solid 1px;
+  outline-offset: -8px;
+  box-shadow: rgba(201, 168, 93, 0.18) 0px 0px 35px, rgba(0, 0, 0, 0.8) 0px 24px 64px;
+  transition: box-shadow 0.4s ease;
+}
+
+.plaque-frame:hover {
+  box-shadow: rgba(201, 168, 93, 0.28) 0px 0px 45px, rgba(0, 0, 0, 0.85) 0px 28px 70px;
+}
+
+/* Tarjeta concéntrica de fondo cuadrado para detalles y secciones */
+.card-concentric {
+  position: relative;
+  background-color: #1e2119;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 168, 93, 0.5);
+  outline: rgba(201, 168, 93, 0.25) solid 1px;
+  outline-offset: -5px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-concentric:hover {
+  border-color: rgba(201, 168, 93, 0.8);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.65), 0 0 20px rgba(201, 168, 93, 0.15);
+}
+
+/* ==========================================
+   RAMAS Y FLORES BOTÁNICAS (SPRIGS)
+   ========================================== */
+.side-branch {
+  position: absolute;
+  width: 80px;
+  height: 160px;
+  opacity: 0.45;
+  color: var(--gold);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+@media (max-width: 640px) {
+  .side-branch {
+    width: 55px;
+    height: 110px;
+    opacity: 0.35;
+  }
+}
+
+.side-branch svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Flores en las 4 esquinas del marco de fotos */
+.frame-sprig {
+  position: absolute;
+  width: 64px;
+  height: 128px;
+  color: var(--gold);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.frame-sprig.corner-a {
+  left: -28px;
+  bottom: -32px;
+  transform: rotate(-8deg);
+}
+
+.frame-sprig.corner-b {
+  right: -28px;
+  bottom: -32px;
+  transform: scaleX(-1) rotate(-8deg);
+}
+
+.frame-sprig.corner-c {
+  left: -22px;
+  top: -38px;
+  width: 48px;
+  height: 96px;
+  transform: rotate(200deg);
+}
+
+.frame-sprig.corner-d {
+  right: -22px;
+  top: -38px;
+  width: 48px;
+  height: 96px;
+  transform: scaleX(-1) rotate(200deg);
+}
+
+/* Divisor ornamental con rombo central */
+.orn-divider {
+  display: block;
+  width: 160px;
+  height: 14px;
+  margin: 14px auto;
+}
+
+/* Texto dorado con gradiente metálico */
+.text-gold-gradient {
+  background: linear-gradient(120deg, #f6e3a3, #c9a85d 45%, #f0d894 70%, #b8913e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sello circular monograma nupcial */
+.family-seal {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: radial-gradient(circle, #282b23, #11140d);
+  box-shadow: 0 0 0 4px #1a1d15, 0 0 0 6px rgba(201, 168, 93, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+/* ==========================================
+   INPUTS Y FORMULARIO RSVP
+   ========================================== */
+input:focus, select:focus, textarea:focus {
+  border-color: #c9a85d !important;
+  box-shadow: 0 0 0 1px #c9a85d, 0 0 14px rgba(201, 168, 93, 0.25) !important;
+  outline: none !important;
+}
+
+/* Spinner de carga para botón */
+.spinner-gold {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(63, 46, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: #3f2e00;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   VENTANA MODAL NUPCIAL
+   ========================================== */
+.rsvp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 9, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.rsvp-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rsvp-modal-card {
+  background: radial-gradient(120% 70% at 50% 0, #282b23, #11140d);
+  border: 2px solid rgb(201, 168, 93);
+  outline: rgba(201, 168, 93, 0.45) solid 1px;
+  outline-offset: -6px;
+  border-radius: 20px;
+  padding: 32px 24px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 35px rgba(201, 168, 93, 0.25), 0 25px 60px rgba(0, 0, 0, 0.85);
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rsvp-modal-overlay.active .rsvp-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================
+   REPRODUCTOR CIRCULAR CON BARRITAS DE AUDIO
+   ========================================== */
+.music-circle-btn {
+  box-sizing: border-box;
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  padding: 0;
+  position: fixed;
+  overflow: hidden;
+  isolation: isolate;
+  outline: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.music-circle-btn .music-glow {
+  z-index: -1;
+}
+
+.music-circle-btn .music-equalizer,
+.music-circle-btn .music-play-icon {
+  flex: 0 0 auto;
+}
+
+.music-circle-btn:hover {
+  box-shadow: 0 0 22px rgba(201, 168, 93, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.music-circle-btn.is-playing .music-glow {
+  opacity: 1;
+  animation: pulseMusicGlow 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseMusicGlow {
+  0%, 100% { transform: scale(1); opacity: 0.25; }
+  50% { transform: scale(1.35); opacity: 0.65; }
+}
+
+/* Barritas de ecualizador dinámicas */
+.music-circle-btn .music-equalizer {
+  display: none;
+}
+
+.music-circle-btn .music-play-icon {
+  display: block;
+}
+
+.music-circle-btn.is-playing .music-equalizer {
+  display: flex;
+}
+
+.music-circle-btn.is-playing .music-play-icon {
+  display: none;
+}
+
+.music-circle-btn.is-paused .music-equalizer {
+  display: none;
+}
+
+.music-circle-btn.is-paused .music-play-icon {
+  display: block;
+}
+
+.eq-bar {
+  display: inline-block;
+  width: 2.5px;
+  background: linear-gradient(to top, #c9a85d, #fde094);
+  border-radius: 2px;
+  height: 4px;
+  transform-origin: bottom;
+}
+
+.music-circle-btn.is-playing .eq-bar-1 {
+  animation: eqWave1 0.85s ease-in-out infinite alternate;
+}
+
+.music-circle-btn.is-playing .eq-bar-2 {
+  animation: eqWave2 0.65s ease-in-out infinite alternate;
+}
+
+.music-circle-btn.is-playing .eq-bar-3 {
+  animation: eqWave3 1.05s ease-in-out infinite alternate;
+}
+
+.music-circle-btn.is-playing .eq-bar-4 {
+  animation: eqWave4 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes eqWave1 {
+  0% { height: 4px; }
+  100% { height: 16px; }
+}
+
+@keyframes eqWave2 {
+  0% { height: 16px; }
+  100% { height: 6px; }
+}
+
+@keyframes eqWave3 {
+  0% { height: 5px; }
+  100% { height: 18px; }
+}
+
+@keyframes eqWave4 {
+  0% { height: 14px; }
+  100% { height: 4px; }
+}
+
+/* Revelados e interacciones de la invitacion */
+#gold-dust {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+#screen-landing main {
+  position: relative;
+  z-index: 1;
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(105deg, #c9a85d 10%, #f3e2b3 42%, #fff8dd 53%, #c9a85d 72%);
+  background-size: 300% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  animation: goldSheen 4.6s ease-in-out infinite;
+}
+
+@keyframes goldSheen {
+  0%, 36%, 100% { background-position: 100% 50%; }
+  56% { background-position: 0% 50%; }
+}
+
+.hero-name {
+  clip-path: inset(0 100% 0 0);
+}
+
+#screen-landing.landing-visible .hero-name {
+  animation: calligraphyReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards,
+    goldSheen 4.6s ease-in-out 2.2s infinite,
+    heroFloat 3.8s ease-in-out 2.2s infinite;
+}
+
+@keyframes calligraphyReveal {
+  0% { clip-path: inset(0 100% 0 0); filter: blur(3px); }
+  100% { clip-path: inset(0 0 0 0); filter: blur(0); }
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.reveal-on-scroll.is-visible .living-text {
+  animation: goldSheen 4.6s ease-in-out infinite,
+    textBloom 3.2s ease-in-out var(--text-delay, 0ms) infinite;
+}
+
+@keyframes textBloom {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(230, 195, 117, 0)); }
+  50% { filter: drop-shadow(0 0 8px rgba(230, 195, 117, 0.62)); }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+  transition: opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.gold-shimmer-control {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.gold-shimmer-control::after {
+  position: absolute;
+  inset: 0 auto 0 -65%;
+  width: 42%;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgba(255, 248, 221, 0.4), transparent);
+  transform: skewX(-18deg);
+  transition: left 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+}
+
+.gold-shimmer-control:hover::after,
+.gold-shimmer-control:focus-visible::after {
+  left: 125%;
+}
+
+.countdown-value-change {
+  animation: countdownLift 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes countdownLift {
+  from { opacity: 0.35; transform: translateY(7px); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gold-shimmer-text,
+  #screen-landing.landing-visible .hero-name,
+  .reveal-on-scroll.is-visible .living-text {
+    animation: none;
+  }
+
+  .hero-name {
+    clip-path: none;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .gold-shimmer-control::after {
+    display: none;
+  }
+}
